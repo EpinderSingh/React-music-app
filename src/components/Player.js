@@ -10,8 +10,8 @@ import {
 const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   // State
   const [songInfo, setSongInfo] = useState({
-    currnetTime: null,
-    duration: null,
+    currnetTime: 0,
+    duration: 0,
   });
 
   // Ref
@@ -37,6 +37,11 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     );
   };
 
+  const dragHandler = (e) => {
+    audioRef.current.currentTime = e.target.value;
+    setSongInfo({ ...songInfo, currnetTime: e.target.value });
+  };
+
   return (
     <div className='player'>
       <div className='time-control'>
@@ -46,6 +51,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
           min={0}
           max={songInfo.duration}
           value={songInfo.currnetTime}
+          onChange={dragHandler}
         />
         <p>{getTime(songInfo.duration)}</p>
       </div>
