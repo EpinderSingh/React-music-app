@@ -2,7 +2,7 @@ import React from 'react';
 
 import LibrarySong from './LibrarySong';
 
-const Library = ({ songs, setCurrentSong, song }) => {
+const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
   return (
     <div className='library'>
       <h2>Library</h2>
@@ -12,6 +12,8 @@ const Library = ({ songs, setCurrentSong, song }) => {
             key={song.id}
             setCurrentSong={setCurrentSong}
             song={song}
+            audioRef={audioRef}
+            isPlaying={isPlaying}
           />
         ))}
       </div>
